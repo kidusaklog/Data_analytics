@@ -1,0 +1,8 @@
+Exercise 2.A
+1. How accurate is Google Trends data as a measure of actual food preference?
+2. Were all possible breakup foods included in the analysis, or only selected ones?
+3. Does search interest truly represent what people eat, or just what they search for?
+
+4. Google Trends data can be found at: https://trends.google.com
+
+5. Based on Google Trends data, milkshakes do not appear to be the most popular breakup food. Milkshake shows the lowest search interest compared to other foods. Chocolate has the highest interest, followed by pizza and ice cream. Therefore, the claim that milkshakes are the most popular breakup food is not supported by the data and may be misleading.
