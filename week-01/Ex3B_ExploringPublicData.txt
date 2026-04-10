@@ -1,0 +1,28 @@
+Exercise 3.B – Exploring Public Data
+
+1. What is Data.gov?
+Data.gov is a U.S. government open data platform that provides access to hundreds of thousands of datasets from federal, state, and local agencies. It allows the public to access machine-readable data for research, analysis, and decision-making.
+
+2. Go to Most Viewed Datasets. How many datasets are listed?
+There are <400,00 datasets found under Most Viewed Datasets.
+
+3. Find the Topic Category for Human Health. Why do you think these were tagged this way?
+Datasets under the Human Health category are tagged this way because they relate to health, nutrition, diseases, and public health indicators.
+
+4. Go to the Food Price Outlook dataset. How can you navigate to additional datasets from the USDA?
+we can navigate to more datasets by clicking on the USDA organization link. This allows you to explore all datasets published by USDA.
+
+5. Go back to the data.gov home page. This time, click on Datasets by Organization.
+
+6. Search for your city, county, and state. What organizations are returned?
+I dig for Chicago and found "City of Chicago" datasets. There are <1000 datasets.
+
+
+7. What is one challenge when working with public datasets?
+*One of the challenges in working with data is that the terminology used by data sources is not always clear or intuitive. As a result, it often requires exploration and creative searching to locate the relevant information.
+
+In this case, searching for food composition returned datasets focused more on nutrition information. This likely occurred due to the keywords or tags used to categorize the data, which aligned more closely with nutrition than with food composition
+
+8 saving...
+9 pushing....
+10 Thanks Nigel
