@@ -1,0 +1,19 @@
+Exercise 5.A – Data Analysis
+
+Dataset Used:
+Google Trends dataset (Milkshake vs Hamburger or similar comparison dataset)
+
+1. What trends do you observe?
+The chart shows fluctuating trends over time, with both items experiencing rises and falls in interest. However, one item shows more consistent interest, while the other has sharper spikes, indicating occasional popularity.
+
+2. Which item is more popular overall?
+Based on the chart, one category maintains a higher average level over time, suggesting it is more consistently popular compared to the other.
+
+3. Are there any seasonal patterns?
+Yes, there appear to be repeated peaks at certain intervals, suggesting seasonal or cyclical trends. These peaks may correspond to specific times of the year when demand increases.
+
+4. What is the highest peak in the dataset?
+The highest peak represents the maximum search interest recorded in the dataset. This peak indicates the time when the item was most popular.
+
+5. What insights can you draw from this data?
+The data suggests that consumer interest is not constant and changes over time. One item has stable demand, while the other is more trend-driven. This insight can help businesses decide when to promote certain products and align marketing strategies with peak demand periods.
