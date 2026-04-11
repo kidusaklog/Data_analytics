@@ -1,0 +1,28 @@
+Exercise 3.A – Reviewing Survey Results
+
+1. What conclusion can you reach about the responses to this question?
+The responses show variation in demographics such as experience with Excel, corporate experience, and personal attributes like height and location. Most participants appear to have limited to moderate experience, indicating a beginner to intermediate skill level in data analysis.
+
+2. Is the default summary or visualization helpful? How could it be improved?
+The default summary is helpful for quickly understanding distributions, but it can be improved by adding clearer labels, percentages, and visual comparisons such as bar charts or pie charts for better interpretation.
+
+3. For questions with an “Other” option, where can you find the actual text responses? Do you notice anything tricky?
+The actual text responses can be found in the detailed response section of the dataset. A challenge is that responses may vary in wording, making it difficult to group them consistently for analysis.
+
+4. For questions calling for a written response, what challenges do you notice about finding trends or patterns in the answers provided?
+It is difficult to identify patterns because responses are unstructured and may include different wording for similar ideas. This requires manual categorization or text processing to analyze effectively.
+
+5. Now that you can see the responses, how might you recommend rephrasing this or question or the response options in a future survey?
+I would recommend using more structured response options such as predefined categories or ranges (e.g., years of experience grouped into intervals). This would make the data easier to analyze and compare.
+
+6. Is there anything that surprised you about the survey responses?
+One surprising observation is the variation in experience levels among participants, especially in Excel and corporate experience, which indicates a diverse background in the group.
+
+7. Looking at responses to questions 1 and 5, are there any ideas you might try to include in your morning routine, or any questions that you are also curious about?
+The responses suggest that having structured habits and consistency may improve readiness and productivity. I am also curious about how experience level influences learning speed in this course.
+
+8. Pretend you are the instructor. Is there anything you can learn from this survey to help improve how you approach teaching this class?
+The instructor can learn that students have varying levels of experience and should tailor lessons to support beginners while still engaging more experienced participants. Providing additional resources or examples could improve learning outcomes.
+
+9. Do you think it was helpful or not helpful to make this survey anonymous? Why or why not?
+Making the survey anonymous is helpful because it encourages honest responses. However, it limits the ability to follow up with specific individuals or provide personalized support.
