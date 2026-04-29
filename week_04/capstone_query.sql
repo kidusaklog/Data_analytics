@@ -4,6 +4,7 @@ Category/Vendor of Choice: Pernod Ricard
 SELECT DISTINCT vendor
 FROM sales
 WHERE vendor ILIKE '%Pernod%';
+-- the full name on the vendor is 'Pernod Ricard USA/Austin Nichols'
 
 -- 1. Create a list of all transactions for your chosen [Category/Vendor] that took place in
 -- the last quarter of 2014, sorted by the total sale amount from highest to lowest.
@@ -14,6 +15,7 @@ FROM sales
 WHERE vendor = 'Pernod Ricard USA/Austin Nichols'
   AND date BETWEEN '2014-10-01' AND '2014-12-31'
 ORDER BY total DESC;
+--ive got  24150 columns
 
 -- 2. Which transactions for your [Category/Vendor] had a bottle quantity greater than 12?
 -- Display the date, store number, item description, and total amount.
@@ -24,7 +26,7 @@ FROM sales
 WHERE vendor = 'Pernod Ricard USA/Austin Nichols'
   AND bottle_qty > 12
 ORDER BY bottle_qty DESC, total DESC;
-
+--ive got   14584 columns
 
 -- 3. Find all products in the products_table whose item_description contains a specific
 -- keyword (e.g., 'Limited', 'Spiced'). What categories do they belong to?
@@ -35,6 +37,7 @@ FROM products
 WHERE vendor_name ILIKE '%Pernod%'
   AND item_description ILIKE '%Limited%'
 ORDER BY category_name, item_description;
+--found 2 items 
 
 -- Aggregation--
 -- 4. What is the total sales revenue and the average bottle price (btl_price) for
@@ -43,19 +46,13 @@ ORDER BY category_name, item_description;
 
 SELECT
     vendor,
-    SUM(total) AS total_sales_revenue,
-    AVG(btl_price) AS average_bottle_price
-FROM sales
-WHERE vendor = 'Pernod Ricard USA/Austin Nichols'
-GROUP BY vendor;
-
----els teqnique
-
-SELECT
     SUM(total::numeric) AS total_sales_revenue,
     AVG(btl_price::numeric) AS average_bottle_price
 FROM sales
-WHERE vendor ILIKE 'Pernod Ricard USA/Austin Nichols';
+WHERE vendor = 'Pernod Ricard USA/Austin Nichols'
+GROUP BY vendor;
+--the total sales revenue is 28157424.53 and the average bottle price is 18.0753918646672759
+
 
 -- 5. How many transactions were recorded for each specific item description within your
 -- chosen [Category]? Which specific product is the most frequently purchased?
@@ -69,19 +66,29 @@ FROM sales
 WHERE vendor = 'Pernod Ricard USA/Austin Nichols'
 GROUP BY description
 ORDER BY transaction_count DESC;
+--got 232 columns of items but the top one is Absolut Swedish Vodka with 80 Prf ,33138 transaction count and 365020 total bottle sold
+
 
 -- 6. Which store generated the highest total revenue for your [Category/Vendor]?
 -- Which generated the lowest (but still greater than zero)?
 -- (Strength vs. Weakness: Identifying your best and worst retail partners).
 
 SELECT
-    store,
-    SUM(REPLACE(REPLACE(total::text, '$', ''), ',', '')::numeric) AS total_revenue
-FROM sales
-WHERE vendor = 'Pernod Ricard USA/Austin Nichols'
-GROUP BY store
+    s.store,
+    st.name AS store_name,
+    st.store_address,
+    SUM(s.total::numeric) AS total_revenue
+FROM sales s
+JOIN stores st
+    ON s.store = st.store
+WHERE s.vendor = 'Pernod Ricard USA/Austin Nichols'
+GROUP BY
+    s.store,
+    st.name,
+    st.store_address
 ORDER BY total_revenue DESC
 LIMIT 1;
+--ive found 1316829.75 total revenue on store Hy-vee #3 / Bdi / Des Moines on a location 3221 Se 14th St Des Moines, IA 503200000(41.55407025200003, -93.59676391599999)
 
 
 -- 7. What is the total revenue for every vendor within your chosen [Category],
@@ -90,12 +97,12 @@ LIMIT 1;
 
 SELECT
     vendor,
-    SUM(REPLACE(REPLACE(total::text, '$', ''), ',', '')::numeric) AS total_revenue
+    SUM(total::numeric) AS total_revenue
 FROM sales
 WHERE category_name = 'IMPORTED VODKA'
 GROUP BY vendor
 ORDER BY total_revenue DESC;
-
+-- found 43 vendors and sorted them decending 
 
 -- 8. Which stores had total sales revenue for your [Category/Vendor] exceeding $2,000?
 -- (Hint: Use HAVING to filter aggregated store totals).
@@ -109,7 +116,7 @@ WHERE vendor = 'Pernod Ricard USA/Austin Nichols'
 GROUP BY store
 HAVING SUM(total::numeric) > 2000
 ORDER BY total_sales_revenue DESC;
-
+--1015 stores have exceeding $2,000 revenue
 
 -- Joins
 -- 9. Find all sales records where the category_name is either your chosen category
@@ -134,24 +141,13 @@ JOIN stores st
 WHERE s.vendor = 'Pernod Ricard USA/Austin Nichols'
   AND p.category_name IN ('IMPORTED VODKA', 'VODKA 80 PROOF')
 ORDER BY p.category_name, s.total DESC;
-
+--42250 columns found 
 
 -- 10. List all transactions where the state bottle cost was between $10 and $20 for
 -- your [Category/Vendor].
 -- (Opportunity: Analyzing performance in the "mid-tier" price bracket).
 
-SELECT *
-FROM sales s
-JOIN products p
-    ON s.item = p.item_no
-JOIN stores st
-    ON s.store = st.store
-WHERE s.vendor = 'Pernod Ricard USA/Austin Nichols'
-  AND s.state_btl_cost BETWEEN 10 AND 20
-ORDER BY s.state_btl_cost, s.total DESC;
 
-
---eroor 
 SELECT *
 FROM sales s
 JOIN products p
@@ -164,6 +160,9 @@ WHERE s.vendor = 'Pernod Ricard USA/Austin Nichols'
         ELSE FALSE
       END
 ORDER BY s.state_btl_cost, s.total DESC;
+--got 94416 columns 
+
+
 -- 11. Write a query that displays each store's total sales for your [Category/Vendor]
 -- along with the store's name and address from the stores_table.
 -- (Strength: Mapping your physical sales footprint).
@@ -180,7 +179,7 @@ GROUP BY
     st.name,
     st.store_address
 ORDER BY total_sales DESC;
-
+--found 1292 columns
 
 -- 12. For each sale in your [Category], display the transaction date, total amount,
 -- and the population of the county where the sale occurred by joining with counties_table.
