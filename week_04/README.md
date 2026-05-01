@@ -16,3 +16,6 @@ Main areas analyzed include:
 - Stores performing above average revenue
 
 This project helps identify Pernod Ricard’s strengths, weaknesses, opportunities, and threats within the Iowa liquor market using data-driven SQL analysis.
+
+
+HERE IS THE LINK FOR 10 MIN VIDEO https://drive.google.com/file/d/1_x39Aq7y-TlxQ9YSotrB8jfWK5PJ_FIR/view?usp=sharing
