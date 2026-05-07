@@ -1,3 +1,10 @@
+# ╔══════════════════════════════════════════╗
+# ║         KIDUS TESEMA                     ║
+# ║    ~ Year Up United Student ~            ║
+# ║       Data Analytics Track              ║
+# ║                                          ║
+# ║   "Turning data into decisions"          ║
+# ╚══════════════════════════════════════════╝
 ##Lab 1 — Restaurant tip script
 # Define known values
 food_cost = 79.25
