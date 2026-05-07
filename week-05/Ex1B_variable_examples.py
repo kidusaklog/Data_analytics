@@ -16,8 +16,8 @@ customer_id = 1001  # assumed numeric ID used in database lookup
 customer_name = "John Doe"  # full name assumed as single string, but could be split into first/last
 customer_gender = "Male"  # assumed categorical value (Male/Female/Other)
 customer_dob = "1995-08-15"  # stored as string; could also be datetime object for analysis
-driver_license_number = ""  # empty string because value may not be available yet
-auto_policy_number = 0  # numeric placeholder assuming policy numbers are numeric identifiers
+driver_license_number = "dgfhg343445654"  # empty string because value may not be available yet
+auto_policy_number = 0000AAS3054  # numeric placeholder assuming policy numbers are numeric identifiers
 
 # -------------------------------
 # Personal information variables
