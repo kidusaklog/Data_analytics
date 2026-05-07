@@ -22,7 +22,7 @@ auto_policy_number = 0  # numeric placeholder assuming policy numbers are numeri
 # -------------------------------
 # Personal information variables
 # -------------------------------
-my_name = "Abrham Tilahun"  # could also be split into first_name and last_name
+my_name = "kidus tesema"  # could also be split into first_name and last_name
 birth_location = "Addis Ababa, Ethiopia"  # combined city and state/country for simplicity
 
 
