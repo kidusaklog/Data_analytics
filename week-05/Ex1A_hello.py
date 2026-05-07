@@ -1,3 +1,15 @@
+# ╔══════════════════════════════════════════╗
+# ║         KIDUS TESEMA                     ║
+# ║    ~ Year Up United Student ~            ║
+# ║       Data Analytics Track              ║
+# ║                                          ║
+# ║   "Turning data into decisions"          ║
+# ╚══════════════════════════════════════════╝
+
+
+
+
+
 print("Hello world!")
 
 
