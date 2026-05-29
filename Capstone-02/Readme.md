@@ -126,11 +126,6 @@ These files were merged together using shared columns such as:
 
 
 
-\## 🔍 How I Did the Analysis
-
-
-
-First, I imported the Python libraries needed for the analysis:
 
 
 
