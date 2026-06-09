@@ -1,0 +1,555 @@
+NORTHWIND DATABASE REVIEW
+
+TABLE: Categories
+
+What does a value in this column represent? What values might you see here?
+- CategoryID: Unique numeric ID for each category, values 1-8
+- CategoryName: Category name e.g. Beverages, Seafood, Produce
+- Description: Long text description of the category
+- Picture: Binary image data
+
+Is this column a part of the primary key to this table?
+- CategoryID: YES
+- CategoryName: NO
+- Description: NO
+- Picture: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- CategoryID: NO (but appears as FK in Products table)
+- CategoryName: NO
+- Description: NO
+- Picture: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- CategoryID: YES - needed for table relationship with Products
+- CategoryName: YES - used for grouping in reports
+- Description: NO - long text, not useful for analysis
+- Picture: NO - binary data, not usable in Power BI
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- CategoryID: YES
+- CategoryName: NO - rename to Category
+
+
+What might be the data type and format for this column in a Power BI Model?
+- CategoryID: Whole Number
+- CategoryName: Text
+
+Can you think of any calculations where this column data might be used?
+- CategoryID: Table relationships only
+- CategoryName: Sales by category, count of products per category
+
+
+TABLE: Customers
+-----------------
+What does a value in this column represent? What values might you see here?
+- CustomerID: Unique text ID for each customer
+- CompanyName: Company name
+- ContactName: Contact person name
+- ContactTitle: Job title
+- Address: Street address 
+- City: City name 
+- Region: State/region
+- PostalCode: Postal/zip code
+- Country: Country name
+- Phone: Phone number
+- Fax: Fax number
+
+Is this column a part of the primary key to this table?
+- CustomerID: YES
+- All others: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- CustomerID: NO (but appears as FK in Orders table)
+- All others: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- CustomerID: YES - needed for relationship with Orders
+- CompanyName: YES - customer name for reports
+- ContactName: YES - useful for detailed reports
+- ContactTitle: YES - useful for grouping
+- Address: NO - street level not needed
+- City: YES - geographic analysis
+- Region: YES - geographic analysis
+- PostalCode: YES - geographic analysis
+- Country: YES - geographic analysis
+- Phone: NO - contact info, not useful
+- Fax: NO - contact info, not useful
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- CustomerID: YES
+- CompanyName: NO - rename to Customer
+- ContactName: NO - rename to Customer Contact
+- ContactTitle: NO - rename to Customer Contact Title
+- City: NO - rename to Customer City
+- Region: NO - rename to Customer Region
+- PostalCode: NO - rename to Customer Postal Code
+- Country: NO - rename to Customer Country
+
+What might be the data type and format for this column in a Power BI Model?
+- CustomerID: Text
+- CompanyName: Text
+- ContactName: Text
+- ContactTitle: Text
+- City: Text (Geographic)
+- Region: Text (Geographic)
+- PostalCode: Text (Geographic)
+- Country: Text (Geographic)
+
+Can you think of any calculations where this column data might be used?
+- CompanyName: Count of customers, sales per customer
+- City/Region/Country: Sales by geography
+- ContactTitle: Purchasing patterns by title
+
+
+TABLE: Employees
+-----------------
+What does a value in this column represent? What values might you see here?
+- EmployeeID: Unique numeric ID, values 1-9
+- LastName: Last name e.g. Davolio, Fuller
+- FirstName: First name e.g. Nancy, Andrew
+- Title: Job title e.g. Sales Representative, VP Sales
+- TitleOfCourtesy: Honorific e.g. Mr., Ms., Dr.
+- BirthDate: Date of birth e.g. 1968-12-08
+- HireDate: Date hired e.g. 1992-05-01
+- Address: Street address
+- City: City name
+- Region: State/region
+- PostalCode: Postal code
+- Country: Country name
+- HomePhone: Home phone number
+- Extension: Office extension number
+- Photo: Binary photo data
+- Notes: Long text bio
+- ReportsTo: EmployeeID of their manager e.g. 2
+- PhotoPath: File path to photo
+
+Is this column a part of the primary key to this table?
+- EmployeeID: YES
+- All others: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- ReportsTo: YES - references Employees.EmployeeID (self-referencing)
+- EmployeeID: NO (but appears as FK in Orders and EmployeeTerritories)
+- All others: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- EmployeeID: YES - needed for relationships
+- LastName: YES - employee name for reports
+- FirstName: YES - employee name for reports
+- Title: YES - grouping by job title
+- TitleOfCourtesy: YES - used in formatted name display
+- BirthDate: YES - calculate employee age
+- HireDate: YES - calculate years employed
+- Address: NO - street level not needed
+- City: YES - geographic analysis
+- Region: YES - geographic analysis
+- PostalCode: YES - geographic analysis
+- Country: YES - geographic analysis
+- HomePhone: NO - contact info
+- Extension: NO - contact info
+- Photo: NO - binary data
+- Notes: NO - long text
+- ReportsTo: YES - org chart / hierarchy
+- PhotoPath: NO - file path, not useful
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- EmployeeID: YES
+- LastName: NO - rename to Employee Last Name
+- FirstName: NO - rename to Employee First Name
+- Title: NO - rename to Employee Title
+- TitleOfCourtesy: NO - rename to Employee Title Of Courtesy
+- BirthDate: NO - rename to Employee Birth Date
+- HireDate: NO - rename to Employee Hire Date
+- City: NO - rename to Employee City
+- Region: NO - rename to Employee Region
+- PostalCode: NO - rename to Employee Postal Code
+- Country: NO - rename to Employee Country
+- ReportsTo: NO - rename to EmployeeReportsToEmployeeID
+
+What might be the data type and format for this column in a Power BI Model?
+- EmployeeID: Whole Number
+- LastName/FirstName/Title/TitleOfCourtesy: Text
+- BirthDate/HireDate: Date
+- City/Region/PostalCode/Country: Text (Geographic)
+- ReportsTo: Whole Number
+
+Can you think of any calculations where this column data might be used?
+- BirthDate: Employee Age = DATEDIFF(BirthDate, TODAY(), YEAR)
+- HireDate: Years Employed = DATEDIFF(HireDate, TODAY(), YEAR)
+- Title: Count employees per title
+- ReportsTo: Build org chart hierarchy
+
+
+TABLE: EmployeeTerritories
+---------------------------
+What does a value in this column represent? What values might you see here?
+- EmployeeID: ID of the employee 
+- TerritoryID: ID of the territory
+
+Is this column a part of the primary key to this table?
+- EmployeeID: YES (composite PK with TerritoryID)
+- TerritoryID: YES (composite PK with EmployeeID)
+
+Is this column a part of a foreign key that points to a record in another table?
+- EmployeeID: YES - references Employees.EmployeeID
+- TerritoryID: YES - references Territories.TerritoryID
+
+Would this column be valuable to bring into our Power BI Model?
+- EmployeeID: YES - needed for relationships
+- TerritoryID: YES - needed for relationships
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- EmployeeID: YES
+- TerritoryID: YES
+
+What might be the data type and format for this column in a Power BI Model?
+- EmployeeID: Whole Number
+- TerritoryID: Text
+
+Can you think of any calculations where this column data might be used?
+- Count territories per employee, count employees per territory
+
+
+TABLE: Order Details (Fact Table)
+-----------------------------------
+What does a value in this column represent? What values might you see here?
+- OrderID: ID of the order 
+- ProductID: ID of the product sold 
+- UnitPrice: Price per unit at time of sale 
+- Quantity: Units sold 
+- Discount: Discount rate applied 
+
+Is this column a part of the primary key to this table?
+- OrderID: YES (composite PK with ProductID)
+- ProductID: YES (composite PK with OrderID)
+- UnitPrice: NO
+- Quantity: NO
+- Discount: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- OrderID: YES - references Orders.OrderID
+- ProductID: YES - references Products.ProductID
+- UnitPrice: NO
+- Quantity: NO
+- Discount: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- OrderID: YES - needed for relationships
+- ProductID: YES - needed for relationships
+- UnitPrice: YES - core sales metric
+- Quantity: YES - core sales metric
+- Discount: YES - discount analysis
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- OrderID: YES
+- ProductID: YES
+- UnitPrice: NO - rename to Unit Price
+- Quantity: NO - rename to Sales Quantity
+- Discount: NO - rename to Sales Discount Percent
+
+What might be the data type and format for this column in a Power BI Model?
+- OrderID: Whole Number
+- ProductID: Whole Number
+- UnitPrice: Fixed Decimal (Currency)
+- Quantity: Whole Number
+- Discount: Percentage
+
+Can you think of any calculations where this column data might be used?
+- Sales Amount = Quantity * UnitPrice * (1 - Discount)
+- Discount Amount = Quantity * UnitPrice * Discount
+- Total units sold = SUM(Quantity)
+
+
+TABLE: Orders
+--------------
+What does a value in this column represent? What values might you see here?
+- OrderID: Unique order ID 
+- CustomerID: ID of the customer who ordered
+- EmployeeID: ID of the employee who handled it 
+- OrderDate: Date order was placed 
+- RequiredDate: Date customer needs it by 
+- ShippedDate: Date order was shipped 
+- ShipVia: Shipper ID used 
+- Freight: Shipping cost 
+- ShipName: Recipient name
+- ShipAddress: Street address of destination
+- ShipCity: City of destination
+- ShipRegion: Region of destination 
+- ShipPostalCode: Postal code of destination
+- ShipCountry: Country of destination 
+
+Is this column a part of the primary key to this table?
+- OrderID: YES
+- All others: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- CustomerID: YES - references Customers.CustomerID
+- EmployeeID: YES - references Employees.EmployeeID
+- ShipVia: YES - references Shippers.ShipperID
+- All others: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- OrderID: YES - needed for relationships
+- CustomerID: YES - needed for relationships
+- EmployeeID: YES - needed for relationships
+- OrderDate: YES - sales over time analysis
+- RequiredDate: YES - on-time delivery analysis
+- ShippedDate: YES - fulfillment time analysis
+- ShipVia: YES - needed for relationship with Shippers
+- Freight: YES - shipping cost analysis
+- ShipName: YES - destination info
+- ShipAddress: NO - street level not needed
+- ShipCity: YES - geographic analysis
+- ShipRegion: YES - geographic analysis
+- ShipPostalCode: YES - geographic analysis
+- ShipCountry: YES - geographic analysis
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- OrderID: YES
+- CustomerID: YES
+- EmployeeID: YES
+- OrderDate: NO - rename to Order Date
+- RequiredDate: NO - rename to Order Required Date
+- ShippedDate: NO - rename to Order Shipped Date
+- ShipVia: NO - rename to ShipperID
+- Freight: NO - rename to Order Freight Amount
+- ShipName: NO - rename to Order Ship Name
+- ShipCity: NO - rename to Order Ship City
+- ShipRegion: NO - rename to Order Ship Region
+- ShipPostalCode: NO - rename to Order Ship Postal Code
+- ShipCountry: NO - rename to Order Ship Country
+
+What might be the data type and format for this column in a Power BI Model?
+- OrderID: Whole Number
+- CustomerID/EmployeeID/ShipVia: Whole Number / Text
+- OrderDate/RequiredDate/ShippedDate: Date
+- Freight: Fixed Decimal (Currency)
+- ShipName: Text
+- ShipCity/ShipRegion/ShipPostalCode/ShipCountry: Text (Geographic)
+
+Can you think of any calculations where this column data might be used?
+- Freight: Total/avg shipping cost per order
+- OrderDate: Sales by month/quarter/year
+- ShippedDate - OrderDate: Fulfillment time in days
+- RequiredDate - ShippedDate: Late delivery flag
+
+
+TABLE: Products
+----------------
+What does a value in this column represent? What values might you see here?
+- ProductID: Unique numeric ID 
+- ProductName: Product name 
+- SupplierID: ID of the supplier 
+- CategoryID: ID of the category 
+- QuantityPerUnit: Packaging description 
+- UnitPrice: Current listed price 
+- UnitsInStock: Current inventory
+- UnitsOnOrder: Units ordered from supplier 
+- ReorderLevel: Minimum stock before reordering 
+- Discontinued: Whether product is discontinued 0 or 1
+
+Is this column a part of the primary key to this table?
+- ProductID: YES
+- All others: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- SupplierID: YES - references Suppliers.SupplierID
+- CategoryID: YES - references Categories.CategoryID
+- All others: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- ProductID: YES - needed for relationships
+- ProductName: YES - product analysis
+- SupplierID: YES - needed for relationship with Suppliers
+- CategoryID: YES - needed for relationship with Categories
+- QuantityPerUnit: NO - free text, not useful for analysis
+- UnitPrice: YES - current price analysis
+- UnitsInStock: YES - inventory analysis
+- UnitsOnOrder: YES - incoming inventory analysis
+- ReorderLevel: YES - low stock alerts
+- Discontinued: YES - filter active vs discontinued
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- ProductID: YES
+- ProductName: NO - rename to Product
+- SupplierID: YES
+- CategoryID: YES
+- UnitPrice: NO - rename to Product Current Unit Price
+- UnitsInStock: NO - rename to Product Units In Stock
+- UnitsOnOrder: NO - rename to Product Units On Order
+- ReorderLevel: NO - rename to Product Reorder Level
+- Discontinued: NO - rename to Product Discontinued
+
+What might be the data type and format for this column in a Power BI Model?
+- ProductID/SupplierID/CategoryID: Whole Number
+- ProductName: Text
+- UnitPrice: Fixed Decimal (Currency)
+- UnitsInStock/UnitsOnOrder/ReorderLevel: Whole Number
+- Discontinued: True/False
+
+Can you think of any calculations where this column data might be used?
+- UnitsInStock vs ReorderLevel: Low stock alert flag
+- UnitsInStock + UnitsOnOrder: Total available inventory
+- UnitPrice vs Order Details UnitPrice: Price change over time
+- Discontinued: Count of active vs discontinued products
+
+
+TABLE: Region
+--------------
+What does a value in this column represent? What values might you see here?
+- RegionID: Unique numeric ID, values 1-4
+- RegionDescription: Region name e.g. Eastern, Western, Northern, Southern
+
+Is this column a part of the primary key to this table?
+- RegionID: YES
+- RegionDescription: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- RegionID: NO (but appears as FK in Territories table)
+- RegionDescription: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- RegionID: YES - needed for relationship with Territories
+- RegionDescription: YES - used for grouping in reports
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- RegionID: YES
+- RegionDescription: NO - rename to Region
+
+What might be the data type and format for this column in a Power BI Model?
+- RegionID: Whole Number
+- RegionDescription: Text
+
+Can you think of any calculations where this column data might be used?
+- RegionDescription: Sales by region, employees per region
+
+
+TABLE: Shippers
+----------------
+What does a value in this column represent? What values might you see here?
+- ShipperID: Unique numeric ID
+- CompanyName: Shipper name 
+- Phone: Phone number
+
+Is this column a part of the primary key to this table?
+- ShipperID: YES
+- CompanyName: NO
+- Phone: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- ShipperID: NO (but appears as FK in Orders via ShipVia)
+- CompanyName: NO
+- Phone: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- ShipperID: YES - needed for relationship with Orders
+- CompanyName: YES - shipping analysis by carrier
+- Phone: NO - contact info, not useful
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- ShipperID: YES
+- CompanyName: NO - rename to Shipper
+- Phone: N/A (dropping)
+
+What might be the data type and format for this column in a Power BI Model?
+- ShipperID: Whole Number
+- CompanyName: Text
+
+Can you think of any calculations where this column data might be used?
+- CompanyName: Freight cost by shipper, orders per shipper
+
+
+TABLE: Suppliers
+-----------------
+What does a value in this column represent? What values might you see here?
+- SupplierID: Unique numeric ID
+- CompanyName: Supplier name
+- ContactName: Contact person name
+- ContactTitle: Job title
+- Address: Street address
+- City: City name
+- Region: State/region
+- PostalCode: Postal code
+- Country: Country name
+- Phone: Phone number
+- Fax: Fax number
+- HomePage: Website URL
+
+Is this column a part of the primary key to this table?
+- SupplierID: YES
+- All others: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- SupplierID: NO (but appears as FK in Products table)
+- All others: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- SupplierID: YES - needed for relationship with Products
+- CompanyName: YES - supplier analysis
+- ContactName: YES - detailed reports
+- ContactTitle: YES - grouping
+- Address: NO - street level not needed
+- City: YES - geographic analysis
+- Region: YES - geographic analysis
+- PostalCode: YES - geographic analysis
+- Country: YES - geographic analysis
+- Phone: NO - contact info
+- Fax: NO - contact info
+- HomePage: NO - URL, not useful for analysis
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- SupplierID: YES
+- CompanyName: NO - rename to Supplier
+- ContactName: NO - rename to Supplier Contact
+- ContactTitle: NO - rename to Supplier Contact Title
+- City: NO - rename to Supplier City
+- Region: NO - rename to Supplier Region
+- PostalCode: NO - rename to Supplier Postal Code
+- Country: NO - rename to Supplier Country
+
+What might be the data type and format for this column in a Power BI Model?
+- SupplierID: Whole Number
+- CompanyName/ContactName/ContactTitle: Text
+- City/Region/PostalCode/Country: Text (Geographic)
+
+Can you think of any calculations where this column data might be used?
+- CompanyName: Products per supplier, sales by supplier country
+- Country: Supplier distribution by country
+
+
+TABLE: Territories
+-------------------
+What does a value in this column represent? What values might you see here?
+- TerritoryID: Unique text ID
+- TerritoryDescription: Territory name
+- RegionID: ID of the parent region
+
+Is this column a part of the primary key to this table?
+- TerritoryID: YES
+- TerritoryDescription: NO
+- RegionID: NO
+
+Is this column a part of a foreign key that points to a record in another table?
+- TerritoryID: NO (but appears as FK in EmployeeTerritories)
+- RegionID: YES - references Region.RegionID
+- TerritoryDescription: NO
+
+Would this column be valuable to bring into our Power BI Model?
+- TerritoryID: YES - needed for relationships
+- TerritoryDescription: YES - territory level analysis
+- RegionID: YES - needed for relationship with Region
+
+Do you believe this column is appropriately named for Data Analysis purposes?
+- TerritoryID: YES
+- TerritoryDescription: NO - rename to Territory
+- RegionID: YES
+
+What might be the data type and format for this column in a Power BI Model?
+- TerritoryID: Text
+- TerritoryDescription: Text
+- RegionID: Whole Number
+
+Can you think of any calculations where this column data might be used?
+- TerritoryDescription: Sales by territory, employees per territory
+- RegionID: Territory → Region hierarchy drill-down
